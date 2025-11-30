@@ -3,8 +3,10 @@
 	"image": "mcr.microsoft.com/devcontainers/go:2-1.25-trixie",
 
 	// 挂载宿主机 SSH 目录到容器，解决 Git SSH 认证问题
+	// 挂载宿主机 Claude 配置目录到容器
 	"mounts": [
-		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
+		"source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind"
 	],
 
 	"features": {
