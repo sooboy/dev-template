@@ -1,0 +1,29 @@
+{
+	"name": "全能开发",
+	"image": "mcr.microsoft.com/devcontainers/go:2-1.25-trixie",
+
+	// 挂载宿主机 SSH 目录到容器，解决 Git SSH 认证问题
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+	],
+
+	"features": {
+		"ghcr.io/devcontainers/features/rust:1": {
+			"version": "latest",
+			"profile": "minimal",
+			"targets": "aarch64-unknown-linux-gnu",
+			"components": "rust-analyzer,rust-src,rustfmt,clippy"
+		},
+		"ghcr.io/shyim/devcontainers-features/bun:0": {},
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "24",
+			"installYarn": true
+		}
+	},
+
+	// 使用 .env 文件加载环境变量
+	"runArgs": ["--env-file", "${localWorkspaceFolder}/.devcontainer/.env"],
+
+	// 容器创建后安装 Claude Code
+	"postCreateCommand": "curl -fsSL https://claude.ai/install.sh | bash"
+}
