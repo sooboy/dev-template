@@ -25,5 +25,5 @@
 	"runArgs": ["--env-file", "${localWorkspaceFolder}/.devcontainer/.env"],
 
 	// 容器创建后安装 Claude Code
-	"postCreateCommand": "curl -fsSL https://claude.ai/install.sh | bash"
+	"postCreateCommand": "npm install -g @anthropic-ai/claude-code"
 }
